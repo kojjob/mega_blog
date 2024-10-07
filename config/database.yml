@@ -82,7 +82,7 @@ production:
   primary: &primary_production
     <<: *default
     database: mega_blog_production
-    username: mega_blog
+    # username: mega_blog
     password: <%= ENV["MEGA_BLOG_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production

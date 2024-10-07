@@ -1,0 +1,4 @@
+CREATE DATABASE mega_blog_production;
+CREATE DATABASE mega_blog_production_cache;
+CREATE DATABASE mega_blog_production_queue;
+CREATE DATABASE mega_blog_production_cable;

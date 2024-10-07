@@ -1,0 +1,53 @@
+
+# # Deploy to these servers.
+servers:
+  web:
+    - 78.47.104.216
+  # job:
+  #   hosts:
+  #     - 192.168.0.1
+  #   cmd: bin/jobs
+
+proxy: false
+
+
+
+# Inject ENV variables into containers (secrets come from .kamal/secrets).
+env:
+  secret:
+    - RAILS_MASTER_KEY
+    # - MYSQL_ROOT_PASSWORD
+  clear:
+    # Run the Solid Queue Supervisor inside the web server's Puma process to do jobs.
+    # When you start using multiple servers, you should split out job processing to a dedicated machine.
+    SOLID_QUEUE_IN_PUMA: true
+
+    # Set number of processes dedicated to Solid Queue (default: 1)
+    # JOB_CONCURRENCY: 3
+
+    # Set number of cores available to the application on each server (default: 1).
+    # WEB_CONCURRENCY: 2
+
+    # Match this to any external database server to configure Active Record correctly
+    DB_HOST: 78.46.228.181
+
+    # Log everything from Rails
+     RAILS_LOG_LEVEL: debug
+
+
+accessories:
+  db:
+    image: mysql:8.0
+    host: 78.46.228.181
+    port: "3306"
+    env:
+      clear:
+        MYSQL_ROOT_HOST: '%'
+      secret:
+        - MYSQL_ROOT_PASSWORD
+    files:
+      # - config/mysql/production.cnf:/etc/mysql/my.cnf
+      - db/production.sql:/docker-entrypoint-initdb.d/setup.sql
+    directories:
+      - data:/var/lib/mysql
+#  
