@@ -10,8 +10,6 @@ servers:
 
 proxy: false
 
-
-
 # Inject ENV variables into containers (secrets come from .kamal/secrets).
 env:
   secret:
@@ -32,7 +30,7 @@ env:
     DB_HOST: 78.46.228.181
 
     # Log everything from Rails
-     RAILS_LOG_LEVEL: debug
+    RAILS_LOG_LEVEL: debug
 
 
 accessories:
