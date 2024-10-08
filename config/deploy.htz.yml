@@ -2,7 +2,7 @@
 # # Deploy to these servers.
 servers:
   web:
-    - 78.47.104.216
+    - 37.27.36.63
   # job:
   #   hosts:
   #     - 192.168.0.1
